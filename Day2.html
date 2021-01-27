@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>D3 Learning</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+        .bar {
+            width: 25px;
+            height: 100px;
+            display: inline-block;
+            background-color: rgb(238, 96, 13);
+            margin: 2px;
+        }
+
+        svg {
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+        //static value:This code is telling D3 to first select the ul on the page. Next, select all list items, which returns an empty selection. Then the data() method reviews the dataset and runs the following code three times, once for each item in the array. The enter() method sees there are no li elements on the page, but it needs 3 (one for each piece of data in dataset). New li elements are appended to the ul and have the text "New item".
+        d3.select("ul").selectAll("li").data(dataset).enter().append("li").text("new item");
+
+        //dynamic data binding
+        //logic based styling
+
+        //const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+
+        d3.select("body").selectAll("h2")
+            .data(dataset)
+            .enter()
+            .append("h2")
+            .text((d) => (d + " USD"))
+            .style("color", (d) => d < 20 ? "red" : "green")
+        //
+
+        //const dataset = [12, 31, 22, 17, 25, 18, 29, 14, 9];
+        // display of bars uisng div
+        d3.select("body").selectAll("div")
+            .data(dataset)
+            .enter()
+            .append("div")
+            // Add your code below this line
+            .attr("class", "bar")
+            .style("height", (d) => d * 10 + "px")
+
+        const w = 500;
+        const h = 100;
+        //sample demo using svg
+        var svg = d3.select("body").append("svg").attr("width", w).
+        attr("height", h);
+
+        svg = d3.select("body")
+            .append("svg")
+            .append("rect")
+            .attr("width", 25)
+            .attr("height", 100)
+            .attr("x", 0)
+            .attr("y", 0)
+
+        // data binding to svg but (x,y)index overlap
+        const svg1 = d3.select("body")
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h);
+
+        // svg1.selectAll("rect")
+        //     .data(dataset)
+        //     .enter()
+        //     .append("rect")
+        //     .attr("x", 0)
+        //     .attr("y", 0)
+        //     .attr("width", 25)
+        //     .attr("height", 100);
+// changing x index by adding space b/w bars
+            svg1.selectAll("rect")
+       .data(dataset)
+       .enter()
+       .append("rect")
+       .attr("x", (d, i) => {
+         return i*30
+       })
+       .attr("y", 0)
+       .attr("width", 25)
+       .attr("height", 100);
+    </script>
+</body>
+
+</html>
