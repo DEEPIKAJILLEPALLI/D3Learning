@@ -1,0 +1,127 @@
+<html>
+
+<head>
+    <title>D3 Learning</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+        .bar:hover {
+            fill: brown;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        const dataset = [12, 33, 41, 7, 14, 20, 61, 30];
+        const w = 500;
+        const h = 100;
+        const svg = d3.select("body")
+            .append("svg")
+            .attr("width", w)
+            .attr("height", h);
+        svg.selectAll("rect")
+            .data(dataset)
+            .enter()
+            .append("rect")
+            .attr("x", (d, i) => i * 30)
+            .attr("y", 0)
+            .attr("width", 25)
+            .attr("height", (d, i) => {
+                return d * 3;
+
+            });
+        //inverted
+        //The height of the SVG area is 100. If you have a data point of 0 in the set, you would want the bar to start at the bottom of the SVG area (not the top). To do this, the y coordinate needs a value of 100. If the data point value were 1, you would start with a y coordinate of 100 to set the bar at the bottom. Then you need to account for the height of the bar of 1, so the final y coordinate would be 99.
+        const w1 = 500;
+        const h1 = 100;
+        const svg1 = d3.select("body")
+            .append("svg")
+            .attr("width", w1)
+            .attr("height", h1)
+            .style("margin-top", 100).style("background-color", "black");
+        svg1.selectAll("rect")
+            .data(dataset)
+            .enter()
+            .append("rect")
+            .attr("fill", "orange")
+            .attr("x", (d, i) => i * 30)
+            .attr("y", (d, i) => {
+                // Add your code below this line
+
+                return h1 - d * 3;
+
+                // Add your code above this line
+            })
+            .attr("width", 25)
+            .attr("height", (d, i) => 3 * d);
+
+
+        // text label
+
+        const w2 = 500;
+        const h2 = 300;
+        const svg2 = d3.select("body")
+            .append("svg")
+            .attr("width", w2)
+            .attr("height", h2)
+            .style("margin-top", 200);
+
+        svg2.selectAll("rect")
+            .data(dataset)
+            .enter()
+            .append("rect")
+            .attr("x", (d, i) => i * 30)
+            .attr("y", (d, i) => h2 - 3 * d)
+            .attr("width", 25)
+            .attr("height", (d, i) => 3 * d)
+            .attr("fill", "orange")
+            .attr("class", "bar")
+            .append("title") // tooltip
+            .text((d, i) => d);
+
+
+        svg2.selectAll("text")
+            .data(dataset)
+            .enter()
+            .append("text")
+            .attr("x", (d, i) => i * 30)
+            .attr("y", (d, i) => h2 - 3 * d - 3)
+            .text((d, i) => d)
+            .style("font-family", "verdana")
+            .style("font-size", 15)
+            .attr("fill", "skyblue");
+
+
+        //circle
+        const dataset1 = [
+                  [ 34,    78 ],
+                  [ 109,   280 ],
+                  [ 310,   120 ],
+                  [ 79,    411 ],
+                  [ 420,   220 ],
+                  [ 233,   145 ],
+                  [ 333,   96 ],
+                  [ 222,   333 ],
+                  [ 78,    320 ],
+                  [ 21,    123 ]
+                ];
+
+        const w3 = 500;
+        const h3 = 500;
+
+        const svg3 = d3.select("body")
+            .append("svg")
+            .attr("width", w3)
+            .attr("height", h3);
+
+        svg3.selectAll("circle")
+            .data(dataset1)
+            .enter()
+            .append("circle")
+            .attr("cx", (d) => d[0])
+            .attr("cy", (d) => h3 - d[1])
+            .attr("r", 5)
+    </script>
+</body>
+
+</html>
