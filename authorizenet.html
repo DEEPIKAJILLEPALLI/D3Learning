@@ -27,13 +27,22 @@
                 debugger
 				$("#redirectToken").val($("#inputtoken").val());
 				});
+				$("#continueButton").click(function () {
+				document.getElementById("receiptTransactionId");
+				//$("#formAuthorizeNetTestPage").append("https://bkl-ca-dev-paymentapp.azurewebsites.net/");
+				});
 			});
+			function dummy(){
+				console.log("e"+document.getElementById("receiptTransactionId"));
+			}
+			
+			
 	</script>
 </head>
 <body>
 	<input type="text" id="inputtoken" value="" />
 	<br />
-	<form method="post" action="https://test.authorize.net/payment/payment" id="formAuthorizeNetTestPage" name="formAuthorizeNetTestPage">
+	<form method="post" url="" action="https://test.authorize.net/payment/payment" id="formAuthorizeNetTestPage" name="formAuthorizeNetTestPage"  cancelUrl="http://127.0.0.1:5500/callback.html/">
 		<input type="hidden" id="redirectToken" name="token" value="" />
 		Redirect-Continue to Authorize.Net to Payment Page
 		<button id="btnContinue" onclick="">Continue to next page</button>

@@ -1,0 +1,76 @@
+<html>
+
+<head>
+    <title>AJAX & JSON</title>
+</head>
+<style>
+    .main{
+        display: flex;
+        flex-direction: row;
+    }
+    .card {
+        height: 300px;
+        width: 600px;
+        background-color: bisque;
+        color: blueviolet;
+    }
+
+    body {
+        text-align: center;
+        font-family: "Helvetica", sans-serif;
+    }
+
+    h1 {
+        font-size: 2em;
+        font-weight: bold;
+    }
+
+    .box {
+        border-radius: 5px;
+        background-color: #eee;
+        padding: 20px 5px;
+    }
+
+    button {
+        color: white;
+        background-color: #4791d0;
+        border-radius: 5px;
+        border: 1px solid #4791d0;
+        padding: 5px 10px 8px 10px;
+    }
+
+    button:hover {
+        background-color: #0F5897;
+        border: 1px solid #0F5897;
+    }
+</style>
+
+<body>
+    <script>
+        let html = "<div class='main'>";
+        document.addEventListener('DOMContentLoaded',function(){
+      document.getElementById('getMessage').onclick= () => {
+        fetch('https://jsonplaceholder.typicode.com/todos')
+            .then(response => response.json())
+            .then(data => data.forEach(element => {
+                html += "<div class='card'>" + element.userId + "<br>" + element.title + "<br>"
+                html += "</div><br>";
+
+            }));
+            html+="</div>"
+            document.getElementsByClassName('message')[0].innerHTML = html;
+        };
+  });
+    </script>
+    <h1>Cat Photo Finder</h1>
+    <p class="message box">
+        The message will go here
+    </p>
+    <p>
+        <button id="getMessage">
+            Get Message
+        </button>
+    </p>
+</body>
+
+</html>
