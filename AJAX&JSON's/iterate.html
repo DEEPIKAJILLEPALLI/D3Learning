@@ -8,9 +8,12 @@
         req.open("GET",'https://jsonplaceholder.typicode.com/todos',true);
         req.send();
         req.onload = function(){
-          const json = JSON.parse(req.responseText);
+          var json = JSON.parse(req.responseText);
           let html = "";
           // Add your code below this line
+          json=json.filter(function(val){
+              return val.id>50 && val.id<=100;
+          });
   json.forEach(function(val) {
     const keys = Object.keys(val);
     html += "<div class = 'cat'>";

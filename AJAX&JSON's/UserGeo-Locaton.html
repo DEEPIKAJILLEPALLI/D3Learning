@@ -1,0 +1,24 @@
+<html>
+
+<head>
+    <title>AJAX & JSON</title>
+</head>
+
+<script>
+    // Add your code below this line
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(function(position){
+      document.getElementById('data').innerHTML="latitude:"+position.coords.latitude+" longitude:"+position.coords.longitude
+    })
+  }
+  
+    // Add your code above this line
+  </script>
+  <body>
+    <h4>You are here:</h4>
+    <div id="data">
+    
+    </div>
+  </body>
+  </html>
+  
