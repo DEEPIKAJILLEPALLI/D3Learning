@@ -1,0 +1,14 @@
+.bar:hover {
+    fill: brown;
+}
+.bar {
+    width: 25px;
+    height: 100px;
+    display: inline-block;
+    background-color: rgb(238, 96, 13);
+    margin: 2px;
+}
+
+svg {
+    background-color: pink;
+}
